@@ -24,13 +24,12 @@ export interface Game {
 const useGames=()=>{
         const [games, setGames] = useState<Game[]>([]);
         const [error, setError] = useState("");
-        const [isLoading,setLoading]=useState(false);
+        const [isLoading,setLoading]=useState(true);
 
       
         useEffect(() => {
             const controller =new AbortController();
 
-            setLoading(true);
           apiClient
             .get<FetchGamesResponse>("/games",{signal:controller.signal})
             .then((res) =>{ setGames(res.data.results);
